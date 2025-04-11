@@ -1,0 +1,47 @@
+llm:
+  # Ollama with Cogito 32B model
+  provider: ollama
+  model: cogito:32b
+  temperature: 0.0
+  max_tokens: 10000
+  top_p: 1.0
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  # System prompt templates - client can specify which mode to use
+  system_prompts:
+    default: ""  # Normal mode
+    deep_thinking: "Enable deep thinking subroutine."  # Deep thinking mode
+  system_prompt: "{default}"  # Default to normal mode, client can override with {deep_thinking}
+  
+  # OpenAI configuration
+  providers:
+    openai:
+      provider: openai
+      model: gpt-4o  # Default model
+      openai_api_key: ${OPENAI_API_KEY}  # Get API key from environment variable
+      temperature: 0.0
+      max_tokens: 10000
+      top_p: 1.0
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+      system_prompts:
+        default: ""  # Normal mode
+        deep_thinking: "Enable deep thinking subroutine."  # Deep thinking mode
+      system_prompt: "{default}"  # Default to normal mode, client can override
+    
+    openai-reasoning:
+      provider: openai
+      model: o1  # OpenAI o1 reasoning model
+      openai_api_key: ${OPENAI_API_KEY}  # Get API key from environment variable
+      max_completion_tokens: 10000  # Adjusted to replace max_tokens
+      system_prompts:
+        default: "Use step by step reasoning to solve this problem. Consider multiple approaches."  # o1 reasoning mode
+      system_prompt: "{default}"
+  
+  # Default provider
+  provider: openai
+  
+  # Alternate models
+  # model_options:
+  #   gpt4o: gpt-4o
+  #   o1: gpt-4o-mini  # o1 reasoning model

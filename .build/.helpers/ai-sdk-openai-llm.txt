@@ -1,0 +1,171 @@
+// This file provides a comprehensive guide to using the OpenAI provider with the AI SDK.
+// It covers all major capabilities, including text generation, structured outputs, reasoning models,
+// chat completion, function calling, image and audio processing, custom configuration, streaming responses,
+// and custom model usage. Each section includes practical TypeScript examples and explanatory comments.
+
+// Note: Ensure you have the necessary dependencies installed: `@ai-sdk/openai`, `ai`, and `zod`.
+// Configure your OpenAI API key in your environment before running these examples.
+
+import { openai } from '@ai-sdk/openai';
+import { generateText, generateObject, streamText } from 'ai';
+import { z } from 'zod';
+
+// 1. Text Generation
+// Basic text generation using a prompt with the OpenAI provider.
+
+const textModel = openai('gpt-4o');
+
+const textResult = await generateText({
+  model: textModel,
+  prompt: 'Write a short story about a robot learning to paint.',
+});
+
+console.log('Generated text:', textResult.text);
+
+// Customizing Text Generation
+// Adjust parameters like temperature and max tokens for controlled output.
+
+const customTextResult = await generateText({
+  model: textModel,
+  prompt: 'Write a short story about a robot learning to paint.',
+  temperature: 0.7, // Controls randomness (0.0 to 1.0)
+  maxTokens: 100,   // Limits output length
+});
+
+console.log('Custom generated text:', customTextResult.text);
+
+// 2. Structured Outputs
+// Generate structured data conforming to a schema using GPT-4o.
+
+const structuredModel = openai('gpt-4o', {
+  structuredOutputs: true,
+});
+
+const { object } = await generateObject({
+  model: structuredModel,
+  schema: z.object({
+    weather: z.object({
+      location: z.string(),
+      temperature: z.number(),
+      condition: z.string(),
+    }),
+  }),
+  prompt: 'What is the weather like in San Francisco today?',
+});
+
+console.log('Structured weather data:', object);
+// Example output: { weather: { location: 'San Francisco', temperature: 72, condition: 'Sunny' } }
+
+// 3. Reasoning Models
+// Use the O1 model for complex reasoning tasks, like solving math problems.
+
+const reasoningModel = openai('o1');
+
+const reasoningResult = await generateText({
+  model: reasoningModel,
+  prompt: 'Solve: What is the integral of x^2 from 0 to 1?',
+  providerOptions: {
+    openai: {
+      reasoningEffort: 'high', // Increases reasoning depth
+    },
+  },
+});
+
+console.log('Reasoning result:', reasoningResult.text);
+console.log('Reasoning tokens:', reasoningResult.providerMetadata?.openai?.reasoningTokens);
+
+// 4. Chat Completion
+// Engage in a multi-turn conversation with the model.
+
+const chatResult = await generateText({
+  model: textModel,
+  messages: [
+    { role: 'user', content: 'Hello, how are you?' },
+    { role: 'assistant', content: 'I am doing well, thank you. How can I assist you today?' },
+    { role: 'user', content: 'Can you tell me a joke?' },
+  ],
+});
+
+console.log('Assistant response:', chatResult.text);
+
+// 5. Function Calling
+// Enable the model to call external functions or tools based on the prompt.
+
+const tools = {
+  getWeather: {
+    description: 'Get the current weather for a location',
+    parameters: z.object({
+      location: z.string(),
+    }),
+    execute: async ({ location }) => {
+      // Simulate fetching weather data
+      return { temperature: 72, condition: 'Sunny' };
+    },
+  },
+};
+
+const functionResult = await generateText({
+  model: textModel,
+  prompt: 'What is the weather like in New York?',
+  tools,
+});
+
+console.log('Assistant response:', functionResult.text);
+console.log('Tool calls:', functionResult.toolCalls);
+
+// 6. Image and Audio Processing
+// Placeholder for image/audio capabilities; specific models may be required.
+// Check OpenAI documentation for the latest supported features.
+
+const imageResult = await generateText({
+  model: openai('gpt-4o'), 
+  prompt: 'Generate an image of a sunset over the ocean.',
+});
+// Note: Image/audio processing may depend on specific model support and additional setup.
+
+// 7. Custom Configuration
+// Fine-tune model behavior with advanced parameters.
+
+const configResult = await generateText({
+  model: textModel,
+  prompt: 'Write a poem about the ocean.',
+  temperature: 0.8,        // Higher for creativity
+  topP: 0.9,              // Controls token sampling
+  presencePenalty: 0.2,   // Encourages new topics
+  frequencyPenalty: 0.1,  // Reduces repetition
+});
+
+console.log('Configured poem:', configResult.text);
+
+// 8. Streaming Responses
+// Stream text in real-time for immediate feedback.
+
+const { textStream } = await streamText({
+  model: textModel,
+  prompt: 'Tell me a story about a brave knight.',
+});
+
+for await (const text of textStream) {
+  process.stdout.write(text);
+}
+
+// 9. Custom Models or Endpoints
+// Use custom models or API endpoints for specialized use cases.
+
+const customModel = openai('custom-model-name', {
+  baseUrl: 'https://api.example.com/v1', // Custom endpoint
+});
+
+const customResult = await generateText({
+  model: customModel,
+  prompt: 'Hello, world!',
+});
+
+console.log('Custom model text:', customResult.text);
+
+// Additional Notes:
+// - Install dependencies: `npm install @ai-sdk/openai ai zod`
+// - Set your OpenAI API key in the environment (e.g., via `.env` file).
+// - Some features (e.g., structured outputs, O1 models) require specific model versions.
+// - Image/audio processing support may vary; refer to the latest OpenAI documentation.
+// - O1 model variants (e.g., o1-preview) may have limitations, like reduced system message support.

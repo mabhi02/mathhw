@@ -1,0 +1,70 @@
+{
+  "template_id": "multiple_choice_standard",
+  "template_type": "multiple_choice",
+  "version": "1.0",
+  "description": "Standard multiple-choice question template for medical education",
+  "format": {
+    "text": "{{question_text}}",
+    "options": [
+      {
+        "text": "{{option_1_text}}",
+        "is_correct": "{{option_1_is_correct}}",
+        "position": 0
+      },
+      {
+        "text": "{{option_2_text}}",
+        "is_correct": "{{option_2_is_correct}}",
+        "position": 1
+      },
+      {
+        "text": "{{option_3_text}}",
+        "is_correct": "{{option_3_is_correct}}",
+        "position": 2
+      }
+    ],
+    "explanation": "{{explanation_text}}",
+    "references": [
+      {
+        "title": "{{reference_title}}",
+        "section": "{{reference_section}}"
+      }
+    ],
+    "metadata": {
+      "domain": "{{domain}}",
+      "cognitive_complexity": "{{complexity}}",
+      "blooms_taxonomy_level": "{{blooms_level}}"
+    }
+  },
+  "instructions": {
+    "question_text": "Provide a clear, concise question that tests understanding rather than simple recall. For clinical scenarios, include relevant patient details such as age, symptoms, and test results.",
+    "option_1_text": "This should typically be the correct answer. Make it comprehensive and accurate.",
+    "option_1_is_correct": "This should be true for the correct answer, false for distractors.",
+    "option_2_text": "This should be a plausible but incorrect option based on common misconceptions. Avoid obvious throwaway options.",
+    "option_2_is_correct": "This should be false for incorrect options.",
+    "option_3_text": "Another plausible but incorrect option testing different aspects of understanding. Ensure it is similar in format and plausibility to other options.",
+    "option_3_is_correct": "This should be false for incorrect options.",
+    "explanation_text": "Provide a comprehensive explanation of why the correct answer is right and why the distractors are wrong.",
+    "reference_title": "Name of the reference text or journal article.",
+    "reference_section": "Specific chapter, section or page numbers for the reference.",
+    "domain": "Specify the medical domain (e.g., 'cardiology', 'surgery', 'pathology').",
+    "complexity": "Specify the cognitive complexity as 'low', 'medium', or 'high'.",
+    "blooms_level": "Specify the Bloom's taxonomy level as 'knowledge', 'comprehension', 'application', 'analysis', 'synthesis', or 'evaluation'."
+  },
+  "examples": [
+    {
+      "question_text": "A 65-year-old male presents with severe aortic stenosis, confirmed by echocardiography showing a valve area of 0.7 cm² and a mean gradient of 50 mmHg. The patient has a history of hypertension and is experiencing increasing shortness of breath and chest pain on exertion. Which intervention would be most appropriate for this patient?",
+      "option_1_text": "Surgical aortic valve replacement",
+      "option_1_is_correct": true,
+      "option_2_text": "Medical management with beta-blockers",
+      "option_2_is_correct": false,
+      "option_3_text": "Balloon valvuloplasty as definitive treatment",
+      "option_3_is_correct": false,
+      "explanation_text": "Surgical aortic valve replacement is the most appropriate intervention for this patient with severe symptomatic aortic stenosis. The valve area of 0.7 cm² and mean gradient of 50 mmHg indicate severe stenosis, and the presence of symptoms (shortness of breath and chest pain on exertion) makes this a Class I indication for valve replacement. Medical management with beta-blockers would not address the mechanical obstruction and might worsen symptoms. Balloon valvuloplasty is not a definitive treatment for aortic stenosis in adults and is mainly used as a bridge to surgery in unstable patients.",
+      "reference_title": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+      "reference_section": "Section 3.2.3",
+      "domain": "cardiology",
+      "complexity": "high",
+      "blooms_level": "analysis"
+    }
+  ]
+} 

@@ -1,0 +1,23 @@
+---
+# Agent definitions for medical question generation system
+description: "Enhanced API endpoints for medical question generation using OpenAI SDK."
+
+# This file serves as an index for agent definitions
+# Each agent's configuration is defined in a separate file in the 'definitions' directory
+# These will be automatically loaded and merged at runtime
+
+# Import individual agent definitions
+imports:
+  - definitions/document_loader.yml
+  - definitions/question_generator.yml
+  - definitions/question_evaluator.yml
+  - definitions/multiple_choice_formatter.yml
+  - definitions/contrarian_reviewer.yml
+  - definitions/question_improver.yml
+  - definitions/question_verifier.yml
+  - definitions/surgical_situation_validator.yml
+  - definitions/final_formatter.yml
+
+# Import tool definitions
+imports_tools:
+  - definitions/tools.yml 

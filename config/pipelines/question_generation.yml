@@ -1,0 +1,36 @@
+---
+# Question Generation Pipeline
+description: "Pipeline for generating medical multiple-choice questions"
+
+steps:
+  - agent_type: question_generator
+    name: question_generation
+    description: "Generate initial medical questions"
+  
+  - agent_type: question_evaluator
+    name: question_evaluation
+    description: "Evaluate and rank questions based on cognitive complexity"
+  
+  - agent_type: multiple_choice_formatter
+    name: multiple_choice_formatting
+    description: "Format selected question into multiple choice format with 3 options"
+  
+  - agent_type: contrarian_reviewer
+    name: question_review
+    description: "Critically review the multiple choice question for flaws"
+  
+  - agent_type: question_improver
+    name: question_improvement
+    description: "Improve the question to increase cognitive complexity"
+  
+  - agent_type: question_verifier
+    name: question_verification
+    description: "Verify that the question meets high standards for cognitive complexity"
+  
+  - agent_type: surgical_situation_validator
+    name: surgical_validation
+    description: "Validate that the question presents a surgically appropriate scenario"
+  
+  - agent_type: final_formatter
+    name: final_formatting
+    description: "Format the verified question for final presentation"

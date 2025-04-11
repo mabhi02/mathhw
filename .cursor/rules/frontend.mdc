@@ -1,0 +1,86 @@
+---
+description: 
+globs: abts-generator/**
+alwaysApply: false
+---
+// This file outlines coding standards and best practices for a modern Next.js 15 project using Vercel, React 19, TypeScript, Shadcn, Radix, and the Vercel AI SDK.
+// For detailed OpenAI provider usage with the Vercel AI SDK, refer to `.cursor/rules/ai-sdk-openai-llm.txt`.
+// For detailed Vercel AI SDK usage refer to `https://sdk.vercel.ai/llms.txt`
+// Use npm for package management
+// Do not create new instances of npm run dev, stop and restart to ensure that dev runs consistently on localhost:3000
+
+# 🧩 Code Style and Structure
+- Use functional, declarative programming with React hooks (e.g., `useEffect`, `useState`).
+- Structure files: exported component, subcomponents, helpers, static data, types.
+- Favor modular, reusable functions over duplicated code.
+
+# 📂 Naming Conventions
+- Use kebab-case for files and directories (e.g., `user-profile.tsx`, `components/auth-wizard`).
+- Use descriptive, kebab-case variable names (e.g., `is-loading`, `fetch-user-data`).
+- Export components and utilities with named exports (e.g., `export { UserProfile }`).
+
+# 🧑‍💻 TypeScript Usage
+- Enforce strict TypeScript with explicit types (no `any`).
+- Use `interface` for object shapes; prefer union types over `enum`.
+- Define types inline or in colocated `types.ts` files.
+
+# ✨ Syntax and Formatting
+- Declare pure functions with `function` (e.g., `function calculateTotal()`).
+- Use concise conditionals (e.g., `isActive && <Component />`) in JSX.
+- Keep JSX declarative, avoiding complex logic.
+
+# 🎨 UI and Styling
+- Build UI with Shadcn UI and Radix UI primitives for accessibility and flexibility.
+- Style with Tailwind CSS, using `dark:` variants for dark mode and mobile-first design.
+- Extract reusable styles to utility classes; minimize inline styles.
+
+# ⚡ State and URL Management
+- Manage local state with Jotai (e.g., `atom({ isOpen: false })`). Store is located at `src/store/useAtom.ts`
+- Sync URL params with Nuqs (e.g., `useQueryState('filter')`).
+- Avoid heavy global state libraries unless critical.
+
+# 🧠 Server Actions and Data Flow
+- Use Next.js Server Actions for mutations and secure logic (e.g., `async function submitForm()`).
+- Fetch data in Server Components with `use()` or `fetch`; minimize `use client`.
+- Centralize business logic in server-side utilities.
+
+# 🚀 Performance Optimization
+- Leverage React Server Components to reduce client JS.
+- Use React 19 Suspense with `fallback` (e.g., `<Suspense fallback={<Loading />}>`).
+- Dynamically import non-critical components (e.g., `next/dynamic`).
+- Optimize images with `next/image` (WebP, lazy loading, explicit width/height).
+
+# 🧭 Routing and Navigation
+- Use Next.js 15 App Router with nested layouts and `loading.tsx`.
+- Enable fast navigation with `<Link prefetch>`; handle redirects server-side.
+
+# 🔐 Security and Accessibility
+- Validate inputs on client and server; escape outputs in HTML.
+- Use semantic HTML and WAI-ARIA via Radix/Shadcn components.
+
+# ✅ Testing and Maintenance
+- Test with Jest and React Testing Library; mock APIs with `msw`.
+- Colocate tests (e.g., `user-profile.test.tsx`); document with TS comments.
+
+# 🌐 Vercel Deployment
+- Use edge functions for low-latency tasks; configure SSR with server actions.
+- Optimize caching with `headers()` or `generateStaticParams()`.
+
+# 🧠 Vercel AI SDK with OpenAI
+- Integrate AI via `@ai-sdk/openai` and Vercel AI SDK
+- Handle AI requests in server actions (e.g., `POST /api/chat`).
+- Stream responses with `createStreamableValue()` and `useStreamableValue()`.
+- Secure API keys server-side; throttle requests to manage costs.
+
+# 🤖 Using Vercel AI SDK with OpenAI Provider
+// Installation: `npm add @ai-sdk/openai`
+// Setup:
+import { createOpenAI } from '@ai-sdk/openai';
+const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, compatibility: 'strict' });
+
+// Example: Text Generation
+import { generateText } from 'ai';
+const { text } = await generateText({
+  model: openai('gpt-4o'),
+  prompt: 'Write a haiku about the ocean.',
+});

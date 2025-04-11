@@ -1,0 +1,44 @@
+{
+  "template_id": "true_false_standard",
+  "template_type": "true_false",
+  "version": "1.0",
+  "description": "Standard true/false question template for medical education",
+  "format": {
+    "text": "{{statement_text}}",
+    "is_true": "{{is_true}}",
+    "explanation": "{{explanation_text}}",
+    "references": [
+      {
+        "title": "{{reference_title}}",
+        "section": "{{reference_section}}"
+      }
+    ],
+    "metadata": {
+      "domain": "{{domain}}",
+      "cognitive_complexity": "{{complexity}}",
+      "blooms_taxonomy_level": "{{blooms_level}}"
+    }
+  },
+  "instructions": {
+    "statement_text": "Provide a clear statement about a medical fact, principle, or relationship that can be judged as true or false.",
+    "is_true": "Specify whether the statement is true or false (true or false).",
+    "explanation_text": "Provide a detailed explanation of why the statement is true or false, and elaborate on the relevant concept.",
+    "reference_title": "Name of the reference text or journal article.",
+    "reference_section": "Specific chapter, section or page numbers for the reference.",
+    "domain": "Specify the medical domain (e.g., 'cardiology', 'surgery', 'pathology').",
+    "complexity": "Specify the cognitive complexity as 'low', 'medium', or 'high'.",
+    "blooms_level": "Specify the Bloom's taxonomy level as 'knowledge', 'comprehension', 'application', 'analysis', 'synthesis', or 'evaluation'."
+  },
+  "examples": [
+    {
+      "statement_text": "Acute cholecystitis is best diagnosed using Murphy's sign alone, without the need for additional imaging studies.",
+      "is_true": false,
+      "explanation_text": "This statement is false. While Murphy's sign (pain on palpation of the right upper quadrant during inspiration) is a helpful clinical finding in acute cholecystitis, it is neither sensitive nor specific enough to establish a definitive diagnosis. Current guidelines recommend additional imaging studies, particularly ultrasonography, to confirm the diagnosis of acute cholecystitis. Ultrasonography can detect gallstones, gallbladder wall thickening, pericholecystic fluid, and a sonographic Murphy's sign. In some cases, further imaging such as HIDA scans may be necessary. A comprehensive approach to diagnosis that includes history, physical examination findings, laboratory tests, and imaging studies provides the most accurate assessment.",
+      "reference_title": "Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis",
+      "reference_section": "Section 2.1",
+      "domain": "surgery",
+      "complexity": "medium",
+      "blooms_level": "analysis"
+    }
+  ]
+} 

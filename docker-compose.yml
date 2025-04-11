@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./:/app
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://abts:abtspassword@db:5432/abts_generator}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o}
+      - OPENAI_REASONING_MODEL=${OPENAI_REASONING_MODEL:-o1}
+      - OPENAI_EMBEDDING_MODEL=${OPENAI_EMBEDDING_MODEL:-text-embedding-ada-002}
+      - OPENAI_EMBEDDING_DIMENSIONS=${OPENAI_EMBEDDING_DIMENSIONS:-1536}
+      - OPENAI_API_TIMEOUT=${OPENAI_API_TIMEOUT:-180}
+      - OPENAI_ORG_ID=${OPENAI_ORG_ID}
+      - DEBUG=1
+      - APP_NAME=ABTS Unified Generator
+      - API_VERSION=0.1.0
+      - API_PREFIX=/api
+      - CORS_ORIGINS=*
+    depends_on:
+      - db
+    restart: unless-stopped
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-abts}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-abtspassword}
+      - POSTGRES_DB=${POSTGRES_DB:-abts_generator}
+    restart: unless-stopped
+
+volumes:
+  postgres_data: 

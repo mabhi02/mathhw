@@ -1,0 +1,655 @@
+{
+  "plan_name": "ABTS Unified Generator Implementation",
+  "task_id": "abts-unified-generator-implementation",
+  "status": "pending",
+  "last_updated": "2023-06-01T00:00:00Z",
+  "started_at": "2023-06-01T00:00:00Z",
+  "notes": "Initial plan setup. Ready to begin implementation of the ABTS backend.",
+  "weeks": {
+    "week1": {
+      "focus": "Backend Setup & Agent Factory - Initial Setup",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "1.1",
+          "description": "FastAPI Backend Initialization",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "1.1.1",
+              "description": "Set up project structure with FastAPI framework",
+              "status": "pending"
+            },
+            {
+              "id": "1.1.2",
+              "description": "Configure dependency management (requirements.txt)",
+              "status": "pending"
+            },
+            {
+              "id": "1.1.3",
+              "description": "Implement logging and error handling",
+              "status": "pending"
+            },
+            {
+              "id": "1.1.4",
+              "description": "Set up configuration management system",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "description": "Agent Factory Pattern Implementation - Part 1",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "1.2.1",
+              "description": "Design and implement AbstractAgent base class",
+              "status": "pending"
+            },
+            {
+              "id": "1.2.2",
+              "description": "Create factory class for agent instantiation",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    "week2": {
+      "focus": "Backend Setup & Agent Factory - Completion",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "1.2",
+          "description": "Agent Factory Pattern Implementation - Part 2",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "1.2.3",
+              "description": "Implement initial agent types based on agent_definitions.yml",
+              "status": "pending"
+            },
+            {
+              "id": "1.2.4",
+              "description": "Add agent registration mechanism",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "description": "Basic API Endpoint Setup",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "1.3.1",
+              "description": "Create health check endpoint",
+              "status": "pending"
+            },
+            {
+              "id": "1.3.2",
+              "description": "Implement API versioning",
+              "status": "pending"
+            },
+            {
+              "id": "1.3.3",
+              "description": "Set up authentication framework (if required)",
+              "status": "pending"
+            },
+            {
+              "id": "1.3.4",
+              "description": "Create basic documentation with Swagger/OpenAPI",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "description": "Docker Configuration",
+          "status": "completed",
+          "subtasks": [
+            {
+              "id": "1.4.1",
+              "description": "Create Dockerfile for containerization",
+              "status": "completed"
+            },
+            {
+              "id": "1.4.2",
+              "description": "Set up docker-compose for local development",
+              "status": "completed"
+            },
+            {
+              "id": "1.4.3",
+              "description": "Configure environment variables",
+              "status": "completed"
+            },
+            {
+              "id": "1.4.4",
+              "description": "Document container usage",
+              "status": "completed"
+            }
+          ]
+        }
+      ]
+    },
+    "week3": {
+      "focus": "Configuration & Prompt Engineering - YAML and System Rules",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "2.1",
+          "description": "YAML Configuration System",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "2.1.1",
+              "description": "Implement YAML parser for agent sequences",
+              "status": "pending"
+            },
+            {
+              "id": "2.1.2",
+              "description": "Create validation system for YAML configurations",
+              "status": "pending"
+            },
+            {
+              "id": "2.1.3",
+              "description": "Design and implement configuration schema",
+              "status": "pending"
+            },
+            {
+              "id": "2.1.4",
+              "description": "Add configuration hot-reloading capability",
+              "status": "pending"
+            },
+            {
+              "id": "2.1.5",
+              "description": "Recreate agent.yml files in the backend directory structure",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "description": "System Rules Component",
+          "status": "completed",
+          "subtasks": [
+            {
+              "id": "2.2.1",
+              "description": "Create system rules module using question_rules.yml content",
+              "status": "completed"
+            },
+            {
+              "id": "2.2.2",
+              "description": "Implement system prompt templates incorporating SESATS guidelines",
+              "status": "completed"
+            },
+            {
+              "id": "2.2.3",
+              "description": "Add placeholder substitution mechanism for question_rules.yml variables",
+              "status": "completed"
+            },
+            {
+              "id": "2.2.4",
+              "description": "Implement rules validation against SESATS standards",
+              "status": "completed"
+            }
+          ]
+        }
+      ]
+    },
+    "week4": {
+      "focus": "Configuration & Prompt Engineering - Communication and State",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "2.2",
+          "description": "System Rules Component - Continued",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "2.2.3",
+              "description": "Add placeholder substitution mechanism for question_rules.yml variables",
+              "status": "pending"
+            },
+            {
+              "id": "2.2.4",
+              "description": "Implement rules validation against SESATS standards",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "description": "Agent Communication Protocol",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "2.3.1",
+              "description": "Design inter-agent communication system",
+              "status": "pending"
+            },
+            {
+              "id": "2.3.2",
+              "description": "Implement message passing between agents",
+              "status": "pending"
+            },
+            {
+              "id": "2.3.3",
+              "description": "Add pipeline processing for sequential agent operations",
+              "status": "pending"
+            },
+            {
+              "id": "2.3.4",
+              "description": "Create monitoring for agent interaction",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "description": "Agent State Management",
+          "status": "completed",
+          "subtasks": [
+            {
+              "id": "2.4.1",
+              "description": "Design state persistence for agents",
+              "status": "completed"
+            },
+            {
+              "id": "2.4.2",
+              "description": "Implement state transitions based on agent_definitions.yml config",
+              "status": "completed"
+            },
+            {
+              "id": "2.4.3",
+              "description": "Create rollback mechanisms for failed sequences",
+              "status": "completed"
+            },
+            {
+              "id": "2.4.4",
+              "description": "Add state inspection endpoints",
+              "status": "completed"
+            }
+          ]
+        }
+      ]
+    },
+    "week5": {
+      "focus": "Question Generation System - Core Components",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "3.1",
+          "description": "Question Generator Agent",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "3.1.1",
+              "description": "Implement core question generation logic",
+              "status": "pending"
+            },
+            {
+              "id": "3.1.2",
+              "description": "Add support for different question types following SESATS guidelines",
+              "status": "pending"
+            },
+            {
+              "id": "3.1.3",
+              "description": "Create parameter system for question complexity levels",
+              "status": "pending"
+            },
+            {
+              "id": "3.1.4",
+              "description": "Implement caching for generated questions",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "description": "Question Templates - Part 1",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "3.2.1",
+              "description": "Create template system for questions using the SESATS item structure",
+              "status": "pending"
+            },
+            {
+              "id": "3.2.2",
+              "description": "Implement variable substitution in templates",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    "week6": {
+      "focus": "Question Generation System - Templates and API",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "3.2",
+          "description": "Question Templates - Part 2",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "3.2.3",
+              "description": "Add conditional logic in templates following SESATS guidelines",
+              "status": "pending"
+            },
+            {
+              "id": "3.2.4",
+              "description": "Create template library with example formats",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "description": "Outline Processing",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "3.3.1",
+              "description": "Create outline parser",
+              "status": "pending"
+            },
+            {
+              "id": "3.3.2",
+              "description": "Implement hierarchical outline structure",
+              "status": "pending"
+            },
+            {
+              "id": "3.3.3",
+              "description": "Add metadata support for outlines",
+              "status": "pending"
+            },
+            {
+              "id": "3.3.4",
+              "description": "Create outline validation system against SESATS standards",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "description": "Advanced API Endpoints",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "3.4.1",
+              "description": "Create question generation endpoints",
+              "status": "pending"
+            },
+            {
+              "id": "3.4.2",
+              "description": "Implement batch processing",
+              "status": "pending"
+            },
+            {
+              "id": "3.4.3",
+              "description": "Add filtering and pagination for results",
+              "status": "pending"
+            },
+            {
+              "id": "3.4.4",
+              "description": "Create detailed API documentation",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    "week7": {
+      "focus": "Testing and Optimization",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "4.1",
+          "description": "Comprehensive Testing",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "4.1.1",
+              "description": "Implement unit tests for all agent components",
+              "status": "pending"
+            },
+            {
+              "id": "4.1.2",
+              "description": "Create integration tests for agent sequences",
+              "status": "pending"
+            },
+            {
+              "id": "4.1.3",
+              "description": "Add performance benchmarks",
+              "status": "pending"
+            },
+            {
+              "id": "4.1.4",
+              "description": "Implement continuous integration setup",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "description": "System Optimization",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "4.2.1",
+              "description": "Profile and optimize performance bottlenecks",
+              "status": "pending"
+            },
+            {
+              "id": "4.2.2",
+              "description": "Implement caching strategies",
+              "status": "pending"
+            },
+            {
+              "id": "4.2.3",
+              "description": "Add background task processing for long-running tasks",
+              "status": "pending"
+            },
+            {
+              "id": "4.2.4",
+              "description": "Optimize database queries (if applicable)",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    "week8": {
+      "focus": "Documentation and Deployment",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "4.3",
+          "description": "Documentation",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "4.3.1",
+              "description": "Create comprehensive API documentation",
+              "status": "pending"
+            },
+            {
+              "id": "4.3.2",
+              "description": "Add developer guides for extending the system with new agents",
+              "status": "pending"
+            },
+            {
+              "id": "4.3.3",
+              "description": "Create usage examples and tutorials",
+              "status": "pending"
+            },
+            {
+              "id": "4.3.4",
+              "description": "Document YAML configuration options",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "description": "Deployment Preparation",
+          "status": "pending",
+          "subtasks": [
+            {
+              "id": "4.4.1",
+              "description": "Create production deployment guide",
+              "status": "pending"
+            },
+            {
+              "id": "4.4.2",
+              "description": "Implement proper logging and monitoring",
+              "status": "pending"
+            },
+            {
+              "id": "4.4.3",
+              "description": "Add environment-specific configurations",
+              "status": "pending"
+            },
+            {
+              "id": "4.4.4",
+              "description": "Create backup and recovery procedures",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "current_focus": {
+    "week": "week1",
+    "task": "1.1",
+    "subtask": "1.1.1",
+    "description": "Set up project structure with FastAPI framework",
+    "status": "pending"
+  },
+  "dependencies": [
+    {
+      "id": "1.2",
+      "depends_on": [
+        "1.1"
+      ]
+    },
+    {
+      "id": "1.3",
+      "depends_on": [
+        "1.2"
+      ]
+    },
+    {
+      "id": "1.4",
+      "depends_on": [
+        "1.1"
+      ]
+    },
+    {
+      "id": "2.1",
+      "depends_on": [
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "2.2",
+      "depends_on": [
+        "2.1"
+      ]
+    },
+    {
+      "id": "2.3",
+      "depends_on": [
+        "1.2",
+        "2.2"
+      ]
+    },
+    {
+      "id": "2.4",
+      "depends_on": [
+        "2.3"
+      ]
+    },
+    {
+      "id": "3.1",
+      "depends_on": [
+        "2.3",
+        "2.4"
+      ]
+    },
+    {
+      "id": "3.2",
+      "depends_on": [
+        "2.2",
+        "3.1"
+      ]
+    },
+    {
+      "id": "3.3",
+      "depends_on": [
+        "3.1"
+      ]
+    },
+    {
+      "id": "3.4",
+      "depends_on": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "id": "4.1",
+      "depends_on": [
+        "3.4"
+      ]
+    },
+    {
+      "id": "4.2",
+      "depends_on": [
+        "4.1"
+      ]
+    },
+    {
+      "id": "4.3",
+      "depends_on": [
+        "4.1"
+      ]
+    },
+    {
+      "id": "4.4",
+      "depends_on": [
+        "4.2",
+        "4.3"
+      ]
+    }
+  ],
+  "additional_features": [
+    {
+      "name": "Settings Integration",
+      "description": "Integration with settings.yml configuration file in the config directory",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "OpenAI API Integration",
+      "description": "Integration with OpenAI API as specified in settings.yml",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    }
+  ],
+  "meta": {
+    "status": "pending",
+    "notes": "State file created for ABTS backend implementation",
+    "last_updated": "2023-06-01T00:00:00Z",
+    "started_at": "2023-06-01T00:00:00Z",
+    "completed_at": null
+  }
+} 

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kinetic Build Monitor</title>
+    <style>
+        :root {
+            --background: #09090b;
+            --foreground: #e2e2e7;
+            --card: #18181b;
+            --card-foreground: #e2e2e7;
+            --border: #27272a;
+            --primary: #8a85ff;
+            --primary-foreground: #fff;
+            --muted: #3f3f46;
+            --muted-foreground: #a1a1aa;
+            --accent: #18181b;
+            --accent-foreground: #e2e2e7;
+            --destructive: #ef4444;
+            --destructive-foreground: #fafafa;
+            --success: #22c55e;
+            --success-foreground: #fafafa;
+            --warning: #f59e0b;
+            --warning-foreground: #fafafa;
+
+            --radius: 0.5rem;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--foreground);
+            font-weight: 600;
+        }
+
+        .header {
+            background-color: var(--card);
+            color: var(--card-foreground);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .view-toggle {
+            display: flex;
+            align-items: center;
+            background-color: var(--muted);
+            border-radius: 30px;
+            padding: 2px;
+        }
+
+        .toggle-label {
+            margin: 0;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--muted-foreground);
+            transition: all 0.2s ease;
+        }
+
+        .toggle-label.active {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            transition: all 0.15s ease;
+            user-select: none;
+            opacity: 0.7;
+        }
+
+        .tab:hover {
+            opacity: 0.9;
+        }
+
+        .tab.active {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .json-display {
+            background-color: #121214;
+            padding: 15px;
+            border-radius: var(--radius);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            white-space: pre-wrap;
+            overflow: auto;
+            max-height: 70vh;
+            color: #e2e2e7;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .refresh-time {
+            font-size: 0.8em;
+            color: var(--muted-foreground);
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: var(--destructive-foreground);
+            background-color: var(--destructive);
+            padding: 10px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+        }
+
+        .progress-view {
+            display: none;
+        }
+
+        .progress-bar-container {
+            background-color: var(--muted);
+            border-radius: var(--radius);
+            height: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: var(--radius);
+            background-color: var(--success);
+            transition: width 0.5s ease;
+        }
+
+        .task-list {
+            margin-top: 15px;
+        }
+
+        .task-item {
+            padding: 12px;
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            border-left: 3px solid var(--muted);
+            background-color: rgba(255, 255, 255, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .task-item.done {
+            border-left-color: var(--success);
+        }
+
+        .task-item.in-progress {
+            border-left-color: var(--warning);
+        }
+
+        .task-item.pending {
+            border-left-color: var(--muted);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius);
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .status-badge.done {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        .status-badge.in-progress {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .status-badge.pending {
+            background-color: rgba(161, 161, 170, 0.2);
+            color: var(--muted-foreground);
+        }
+
+        .subtask-list {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .phase-section, .week-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: var(--radius);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slide-in 0.3s ease, fade-out 0.3s ease 2.7s forwards;
+            max-width: 350px;
+        }
+
+        .toast-icon {
+            margin-right: 10px;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Benchmark specific styles */
+        .benchmark-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .benchmark-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .benchmark-stat {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 10px 0;
+            color: var(--primary);
+        }
+        
+        .benchmark-label {
+            font-size: 0.9rem;
+            color: var(--muted-foreground);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th {
+            text-align: left;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .ahead-of-schedule {
+            color: var(--success);
+        }
+        
+        .behind-schedule {
+            color: var(--destructive);
+        }
+        
+        .time-diff {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: var(--radius);
+            font-weight: 500;
+        }
+        
+        .time-diff.negative {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+        
+        .time-diff.positive {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--destructive);
+        }
+        
+        .time-chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+        
+        .chart-bar {
+            width: 30px;
+            background-color: var(--primary);
+            border-radius: var(--radius) var(--radius) 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        
+        .chart-bar.planned {
+            background-color: rgba(138, 133, 255, 0.5);
+        }
+        
+        .chart-bar.actual {
+            background-color: var(--primary);
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+        }
+        
+        .chart-pair {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            margin: 0 20px;
+        }
+
+        /* Loading styles */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(138, 133, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .no-plans {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted-foreground);
+        }
+
+        .time-chart-horizontal {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .chart-label-horizontal {
+            min-width: 200px;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .chart-bar-horizontal {
+            height: 30px;
+            background-color: var(--primary);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            position: relative;
+            transition: width 0.5s ease;
+        }
+
+        .chart-bar-horizontal.planned {
+            background-color: rgba(138, 133, 255, 0.5);
+        }
+
+        .chart-bar-horizontal.actual {
+            background-color: var(--primary);
+        }
+
+        .chart-value-horizontal {
+            position: absolute;
+            right: -45px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Data Kinetic Build Monitor</h1>
+        <div class="view-toggle">
+            <div class="toggle-label active" id="visual-toggle">Visual</div>
+            <div class="toggle-label" id="json-toggle">JSON</div>
+        </div>
+    </div>
+    
+    <div class="tabs" id="plan-tabs">
+        <!-- Tabs will be dynamically generated -->
+        <div class="tab" data-tab="ai-benchmarks">AI Benchmarks</div>
+    </div>
+
+    <div id="tab-content-container">
+        <!-- Plan tabs will be dynamically generated -->
+        <div class="loading" id="loading-indicator">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div id="ai-benchmarks" class="tab-content">
+        <div class="card">
+            <h2>AI Performance Benchmarks</h2>
+            <div id="benchmarks-error" class="error-message" style="display: none;"></div>
+            
+            <div class="benchmark-grid">
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Overall Efficiency Ratio</div>
+                    <div class="benchmark-stat" id="overall-efficiency">0%</div>
+                    <div>Comparing planned vs. actual completion times</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Tasks Completed Ahead of Schedule</div>
+                    <div class="benchmark-stat" id="ahead-schedule-percent">0%</div>
+                    <div>Tasks finished faster than planned</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Average Time Saved Per Task</div>
+                    <div class="benchmark-stat" id="avg-time-saved">0h</div>
+                    <div>Hours saved compared to initial estimates</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Total Development Hours</div>
+                    <div class="benchmark-stat" id="total-dev-hours">0h</div>
+                    <div>Actual time spent on implementation</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Most Efficient Component</div>
+                    <div class="benchmark-stat" id="most-efficient-component">-</div>
+                    <div>Component with highest efficiency ratio</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-label">Development Velocity</div>
+                    <div class="benchmark-stat" id="development-velocity">0</div>
+                    <div>Tasks completed per day</div>
+                </div>
+            </div>
+            
+            <h3>Time Comparison</h3>
+            <div id="time-chart" class="time-chart-horizontal">
+                <!-- Chart bars will be added here -->
+            </div>
+            
+            <h3>Task Performance Breakdown</h3>
+            <div class="benchmark-controls">
+                <select id="task-filter" class="benchmark-filter">
+                    <option value="all">All Components</option>
+                    <!-- Component options will be added here -->
+                </select>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Component/Task</th>
+                        <th>Planned Time</th>
+                        <th>Actual Time</th>
+                        <th>Difference</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="benchmark-table-body">
+                    <!-- Table rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="refresh-time">
+        Last refreshed: <span id="refresh-time"></span>
+    </div>
+
+    <div class="toast-container" id="toast-container">
+        <!-- Toast notifications will be added here -->
+    </div>
+
+    <!-- Load the monitor script -->
+    <script src="monitor.js"></script>
+</body>
+</html> 

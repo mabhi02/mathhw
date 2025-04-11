@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "updated_at": "2025-04-10",
+  "templates": [
+    {
+      "id": "multiple_choice_standard",
+      "type": "multiple_choice",
+      "file": "multiple_choice.json",
+      "description": "Standard multiple-choice question template with 3 options (1 correct, 2 distractors) for medical education"
+    },
+    {
+      "id": "short_answer_standard",
+      "type": "short_answer",
+      "file": "short_answer.json",
+      "description": "Standard short-answer question template for medical education"
+    },
+    {
+      "id": "clinical_scenario_standard",
+      "type": "clinical_scenario",
+      "file": "clinical_scenario.json",
+      "description": "Clinical scenario question template with 3 options (1 correct, 2 distractors) for complex medical decision-making"
+    },
+    {
+      "id": "true_false_standard",
+      "type": "true_false",
+      "file": "true_false.json",
+      "description": "Standard true/false question template for medical education"
+    }
+  ],
+  "usage": {
+    "template_selection": "Select the appropriate template based on the question type and complexity level required.",
+    "customization": "Templates can be customized by modifying the JSON files or creating new ones based on these examples.",
+    "variables": "Replace the variables in double curly braces (e.g., {{question_text}}) with your content.",
+    "options_guidelines": "For multiple-choice and clinical scenario questions, ensure all 3 options are plausible and of similar length and complexity, with no obvious throwaway options."
+  }
+} 

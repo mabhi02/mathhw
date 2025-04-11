@@ -1,0 +1,76 @@
+{
+  "template_id": "clinical_scenario_standard",
+  "template_type": "clinical_scenario",
+  "version": "1.0",
+  "description": "Clinical scenario question template for complex medical decision-making",
+  "format": {
+    "text": "{{scenario_text}}\n\n{{question_text}}",
+    "options": [
+      {
+        "text": "{{option_1_text}}",
+        "is_correct": "{{option_1_is_correct}}",
+        "position": 0
+      },
+      {
+        "text": "{{option_2_text}}",
+        "is_correct": "{{option_2_is_correct}}",
+        "position": 1
+      },
+      {
+        "text": "{{option_3_text}}",
+        "is_correct": "{{option_3_is_correct}}",
+        "position": 2
+      }
+    ],
+    "explanation": "{{explanation_text}}",
+    "references": [
+      {
+        "title": "{{reference_title}}",
+        "section": "{{reference_section}}"
+      }
+    ],
+    "metadata": {
+      "domain": "{{domain}}",
+      "cognitive_complexity": "high",
+      "blooms_taxonomy_level": "{{blooms_level}}",
+      "clinical_setting": "{{clinical_setting}}",
+      "decision_type": "{{decision_type}}"
+    }
+  },
+  "instructions": {
+    "scenario_text": "Provide a detailed clinical scenario with relevant patient history, physical examination findings, laboratory results, and imaging studies. Include only information that is necessary for decision-making.",
+    "question_text": "Ask a focused question about diagnosis, management, or prognosis based on the scenario.",
+    "option_1_text": "This should typically be the correct answer, reflecting best practice.",
+    "option_1_is_correct": "This should be true for the correct answer.",
+    "option_2_text": "This should be a plausible but suboptimal or incorrect option based on common approaches. All options should be of similar length and complexity.",
+    "option_2_is_correct": "This should be false for incorrect options.",
+    "option_3_text": "Another plausible but incorrect option representing a different management strategy. Avoid obvious throwaway answers that would be easily eliminated.",
+    "option_3_is_correct": "This should be false for incorrect options.",
+    "explanation_text": "Provide a detailed explanation of the correct approach, including rationale, evidence base, and potential complications of incorrect options.",
+    "reference_title": "Name of the guideline, consensus statement, or primary literature reference.",
+    "reference_section": "Specific recommendation or evidence level if applicable.",
+    "domain": "Specify the primary medical domain (e.g., 'cardiology', 'surgery', 'critical care').",
+    "blooms_level": "Typically 'analysis', 'synthesis', or 'evaluation' for clinical scenarios.",
+    "clinical_setting": "Specify the setting (e.g., 'emergency department', 'ICU', 'outpatient clinic').",
+    "decision_type": "Specify type of decision (e.g., 'diagnostic', 'therapeutic', 'prognostic')."
+  },
+  "examples": [
+    {
+      "scenario_text": "A 72-year-old male with a history of hypertension, type 2 diabetes, and previous myocardial infarction presents to the emergency department with crushing chest pain radiating to the left arm that began 45 minutes ago. He appears diaphoretic and anxious. Vital signs show BP 160/90 mmHg, HR 110 bpm, RR 22/min, O2 saturation 94% on room air. ECG shows 3mm ST-segment elevation in leads V1-V4. Point-of-care troponin is elevated at 0.15 ng/mL (normal <0.04). The nearest cardiac catheterization laboratory is 90 minutes away by ambulance.",
+      "question_text": "What is the most appropriate immediate management for this patient?",
+      "option_1_text": "Administer thrombolytics, aspirin, clopidogrel, and heparin",
+      "option_1_is_correct": true,
+      "option_2_text": "Start aspirin and heparin, and arrange immediate transfer for primary PCI",
+      "option_2_is_correct": false,
+      "option_3_text": "Administer aspirin, nitrates, and beta-blockers, then obtain an echocardiogram",
+      "option_3_is_correct": false,
+      "explanation_text": "This patient is presenting with a clear ST-elevation myocardial infarction (STEMI) with symptom onset <12 hours ago. Given the 90-minute transfer time to the catheterization laboratory, thrombolytic therapy is the preferred immediate management according to guidelines. The door-to-balloon time would exceed 120 minutes (90 minutes transfer plus additional time for mobilization of the cath lab), making thrombolytics the preferred strategy if there are no contraindications. The patient should receive thrombolytics along with dual antiplatelet therapy (aspirin and clopidogrel) and anticoagulation with heparin. Transfer for rescue PCI should be arranged if thrombolysis fails. While option 2 would be appropriate if the cath lab were closer, the prolonged transfer time makes immediate thrombolysis preferable. Option 3 is inadequate for STEMI management and would delay definitive reperfusion therapy.",
+      "reference_title": "2023 ACC/AHA Guideline for the Management of Acute Myocardial Infarction",
+      "reference_section": "Class I, Level A recommendation for thrombolytic therapy for STEMI patients presenting to non-PCI-capable hospitals with anticipated first medical contact-to-device times >120 minutes",
+      "domain": "cardiology",
+      "blooms_level": "analysis",
+      "clinical_setting": "emergency department",
+      "decision_type": "therapeutic"
+    }
+  ]
+} 

@@ -1,0 +1,165 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Project rules documentation
+globs: 
+alwaysApply: true
+---
+# Project Rules
+
+## General
+
+- This project uses a structured workspace.
+- All work is anchored to the project root.
+- Assume you are always working from the root of the project unless explicitly told otherwise.
+
+## Plans
+
+- When beginning a new task or context switch, read the relevant file from `.build/.plans/{plan_name}.md` to understand the goal and context.
+- Locate and load the corresponding `.build/.state/{plan_name}.json` file to read or update task progress and statuses.
+- Update this `.json` file with relevant metadata, such as:
+  - `"status"`: one of ["pending", "in-progress", "done"]
+  - `"notes"`: optional field for agent commentary or blockers
+  - `"last_updated"`: timestamp of last change
+  - `"started_at"`: timestamp when task was started (when status changes to "in-progress")
+  - `"completed_at"`: timestamp when task was completed (when status changes to "done")
+
+## Tree Structure Validation
+
+- Run the script `.build/.tools/generate_tree.sh` when:
+  - You get stuck or are unsure about the current working context
+  - A new task is started
+  - You need to check for the presence of a file or folder
+- This script creates an updated tree view in `.build/.state/structure.txt` and automatically excludes dotfiles.
+
+## Backend Work
+
+- Backend code resides in the `backend/` directory.
+- Always check if the required file or module exists under `backend/` by referencing `.build/.state/structure.txt`.
+- Follow existing patterns or module styles unless explicitly tasked with refactoring.
+- Prefer to group related logic (e.g., routes, services, models) together within `backend/`.
+
+## Project Tools
+
+- Use `.build/.tools/update_task.sh <plan_name> <status> [notes]` to update task status in state files:
+  - Example: `.build/.tools/update_task.sh hydrogen_implementation in-progress "Working on phase 1"`
+  - Validates inputs and automatically timestamps updates
+- Run `.build/.tools/validate_state.py [plan_name]` to validate state files against plan files:
+  - Checks for task consistency between MD and JSON files
+  - Reports completion statistics and identifies missing tasks
+- Run `.build/.tools/generate_summary.sh [timeframe]` to generate progress reports:
+  - Timeframes: day, week, month, all
+  - Creates `.build/.state/summary.md` with overview of all plan progress
+
+## Task Flow
+
+- Step 1: On new task, check for a plan:
+  - Read from `.build/.plans/{plan_name}.md`
+  - Load `.build/.state/{plan_name}.json`
+- Step 2: Confirm directory state:
+  - Run `.build/.tools/generate_tree.sh`
+  - Use `.build/.state/structure.txt` to orient yourself
+- Step 3: Work in `backend/` or other folders as directed by the plan
+- Step 4: Update the `.build/.state/{plan_name}.json` file to reflect task completion:
+  - Use `.build/.tools/update_task.sh` to update task status
+  - Run `.build/.tools/validate_state.py` to verify state file integrity
+  - Generate a summary with `.build/.tools/generate_summary.sh` when completing major milestones
+
+## Docker Compose Rules
+
+### 1. Always ensure the previous instance is down
+
+```bash
+docker-compose down
+```
+
+- Use before every docker-compose up.
+- Ensures no port conflicts or duplicate containers.
+- Prefer --remove-orphans to clean up untracked containers:
+
+```bash
+docker-compose down --remove-orphans
+```
+
+### 2. Clear volumes only when necessary
+
+- Use with caution (e.g., for a clean database state):
+
+```bash
+docker-compose down -v
+```
+
+- Do not use this regularly in dev unless needed—it deletes all named and anonymous volumes.
+
+### 3. Rebuild images on source or config changes
+
+```bash
+docker-compose up --build
+```
+
+- Use when you've changed the Dockerfile, docker-compose.yml, or dependencies.
+
+### 4. Avoid detached mode in dev unless debugging
+
+```bash
+docker-compose up
+```
+
+- Keep logs in your terminal.
+- Use -d (detached) for background services only when stable:
+
+```bash
+docker-compose up -d
+```
+
+### 5. Use consistent .env files
+
+- Put all configurable values (ports, image names, versions) in .env.
+- Keep .env.example for onboarding new devs.
+
+### 6. Use docker-compose ps to check status
+
+```bash
+docker-compose ps
+```
+
+- Confirms what's running and on which ports.
+
+### 7. Clean up regularly
+
+```bash
+docker system prune -f
+```
+
+- Removes unused containers, networks, images, and build cache.
+- Schedule it weekly or after heavy testing.
+
+### 8. Use profiles or overrides for dev/prod separation
+
+- Split dev/test/prod configs:
+  - docker-compose.override.yml
+  - docker-compose.dev.yml, docker-compose.prod.yml
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+```
+
+### 9. Run one-off commands using run
+
+```bash
+docker-compose run --rm service-name bash
+```
+
+- Avoids polluting your container list.
+- Good for migrations, setup scripts, etc.
+
+### 10. Tag your containers for easier cleanup
+
+```yaml
+container_name: myproject_web
+```
+
+- Helps with docker ps, docker logs, and docker rm.

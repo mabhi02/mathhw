@@ -1,0 +1,126 @@
+SESATS_Question_Writing_Guidelines:
+  overview:
+    purpose: >
+      SESATS (Self-Education Self-Assessment in Thoracic Surgery) is a self-study tool for thoracic surgeons to review essential knowledge and promote lifelong learning.
+    format:
+      sections:
+        - adult cardiac
+        - general thoracic
+        - congenital cardiac
+        - critical care
+      credits: "Up to 70 CME credits"
+
+  item_structure:
+    terminology: 
+      preferred: "item"
+      discouraged: "question"
+    components:
+      - stem
+      - three responses (1 correct, 2 distractors)
+    stem:
+      format: 
+        - brief clinical vignette (recommended)
+        - application of knowledge
+        - scenario-based
+      should_include:
+        - initial symptoms
+        - underlying conditions
+        - clinical findings
+        - appropriate lab studies
+      best_practice: >
+        The stem should allow answering without reading the response options.
+      lead_in_examples:
+        - "The best next step is…"
+        - "The most appropriate management is…"
+        - "The most frequent complication is…"
+        - "The most likely diagnosis is…"
+        - "The treatment with the highest rate of success is…"
+      avoid:
+        - "The next best step is…"
+        - "Which of the following statements is true?"
+        - negative stems (e.g., NOT, EXCEPT, LEAST LIKELY)
+        - "all of the above", "none of the above"
+        - serial/linked questions
+        - "True/False" format
+        - medical jargon and uncommon eponyms
+        - items requiring only fact recall
+
+  response_options:
+    structure:
+      - one clearly correct answer
+      - three plausible distractors
+    rules:
+      - answer options should not be full sentences
+      - avoid absurd, implausible options
+      - distractors should reflect common misconceptions
+      - ensure grammatical agreement with the stem
+      - all options must be homogeneous in category
+      - ensure responses don't change the stem's premise
+      - do not include teaching points in the stem
+    formatting_guidelines:
+      - similar length
+      - grammatically parallel
+      - same category of information
+      - shorter than the stem
+      - randomized or logically ordered (e.g., alphabetical, ascending)
+      - avoid clues like "might", "can", "always", "never"
+    trick_avoidance:
+      - don't use opposite or mutually exclusive choices
+      - don't include one standout option by length or specificity
+
+  difficulty_level:
+    principles:
+      - avoid too easy ( >90% correct) or too difficult ( <30% correct)
+      - should discriminate between more and less knowledgeable candidates
+
+  critiques:
+    requirements:
+      - mandatory for every question
+      - must explain:
+          - why correct answer is correct
+          - why each incorrect answer is not best (minimum 1 sentence each)
+
+  references:
+    rules:
+      - minimum: 1
+      - maximum: 3
+      - must include PubMed ID
+      - must be added to both "References" and "Metadata" tabs in ExamDeveloper
+      - must be current (no earlier than 1999)
+    types:
+      - journal articles
+      - standard textbooks (must include specific pages, not just chapter titles)
+      - reputable internet sources (include DOI or full URL)
+    citation_style: "AMA Manual of Style"
+
+  grammar_and_style:
+    usage:
+      - present tense
+      - third person
+      - define abbreviations on first use
+      - abbreviate units of measure
+    formatting:
+      - similar options grouped together
+      - logical ordering: alphabetical, numerical, severity, invasiveness
+    language_avoidance:
+      - vague determiners: "usually", "commonly", "frequently"
+      - absolute determiners: "always", "never", "only"
+      - demographic bias: race, ethnicity, gender, etc.
+      - clues favoring savvy test-takers
+
+  exam_policy:
+    confidentiality: >
+      All SESATS materials must be submitted through ExamDeveloper. Email submission is strictly prohibited.
+
+example:
+  question:
+    stem: >
+      A patient with a primary mediastinal nonseminomatous germ cell cancer is treated with cisplatin-based chemotherapy...
+    answer_options:
+      - A. observation
+      - B. radiation therapy
+      - C. surgical resection (correct)
+    critique: >
+      Detailed explanation including clinical guidelines and evidence.
+    reference:
+      - PMID: 8888888

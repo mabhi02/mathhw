@@ -1,0 +1,51 @@
+{
+  "template_id": "short_answer_standard",
+  "template_type": "short_answer",
+  "version": "1.0",
+  "description": "Standard short-answer question template for medical education",
+  "format": {
+    "text": "{{question_text}}",
+    "answer_key": "{{answer_key}}",
+    "explanation": "{{explanation_text}}",
+    "references": [
+      {
+        "title": "{{reference_title}}",
+        "section": "{{reference_section}}"
+      }
+    ],
+    "metadata": {
+      "domain": "{{domain}}",
+      "cognitive_complexity": "{{complexity}}",
+      "blooms_taxonomy_level": "{{blooms_level}}",
+      "keywords": ["{{keyword_1}}", "{{keyword_2}}", "{{keyword_3}}"]
+    }
+  },
+  "instructions": {
+    "question_text": "Provide a clear, focused question that requires a short, specific answer. For clinical scenarios, include relevant patient details.",
+    "answer_key": "The expected answer should be concise but comprehensive. Include alternative acceptable answers if applicable.",
+    "explanation_text": "Provide a thorough explanation of the answer, including relevant pathophysiology, diagnostic criteria, or therapeutic principles.",
+    "reference_title": "Name of the reference text or journal article.",
+    "reference_section": "Specific chapter, section or page numbers for the reference.",
+    "domain": "Specify the medical domain (e.g., 'cardiology', 'surgery', 'pathology').",
+    "complexity": "Specify the cognitive complexity as 'low', 'medium', or 'high'.",
+    "blooms_level": "Specify the Bloom's taxonomy level as 'knowledge', 'comprehension', 'application', 'analysis', 'synthesis', or 'evaluation'.",
+    "keyword_1": "A key term related to the answer",
+    "keyword_2": "Another key term related to the answer",
+    "keyword_3": "A third key term related to the answer"
+  },
+  "examples": [
+    {
+      "question_text": "A 45-year-old woman presents with right upper quadrant pain, fever, and jaundice. Ultrasound shows gallstones and a dilated common bile duct. What is the most likely diagnosis?",
+      "answer_key": "Acute cholangitis (ascending cholangitis)",
+      "explanation_text": "The triad of right upper quadrant pain, fever, and jaundice (Charcot's triad) is characteristic of acute cholangitis. This condition typically occurs due to obstruction of the common bile duct, often by gallstones, leading to bacterial infection of the biliary system. The ultrasound findings of gallstones and a dilated common bile duct support this diagnosis. Prompt treatment with antibiotics and biliary decompression is essential to prevent sepsis and other complications.",
+      "reference_title": "Sleisenger and Fordtran's Gastrointestinal and Liver Disease",
+      "reference_section": "Chapter 65: Diseases of the Gallbladder and Bile Ducts",
+      "domain": "gastroenterology",
+      "complexity": "medium",
+      "blooms_level": "application",
+      "keyword_1": "cholangitis",
+      "keyword_2": "Charcot's triad",
+      "keyword_3": "biliary obstruction"
+    }
+  ]
+} 

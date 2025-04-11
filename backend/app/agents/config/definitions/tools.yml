@@ -1,0 +1,17 @@
+---
+# Tools definitions
+search_vector_store:
+  name: "search_vector_store"
+  description: "Search the cardiothoracic_knowledge vector store for relevant medical information."
+  parameters:
+    - name: "query"
+      description: "The search query to find relevant information in the vector store"
+      type: "string"
+    - name: "collection_name"
+      description: "The name of the vector store collection to search"
+      type: "string"
+    - name: "top_k"
+      description: "Number of top results to return"
+      type: "integer"
+  returns:
+    description: "A dictionary containing the search results" 

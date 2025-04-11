@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABTS Unified Generator API Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            margin-top: 1.5em;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            font-size: 1.25em;
+        }
+        pre, code {
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+            background-color: #f6f8fa;
+            border-radius: 3px;
+        }
+        pre {
+            padding: 16px;
+            overflow: auto;
+            line-height: 1.45;
+        }
+        code {
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 0.85em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+        }
+        .endpoint {
+            background-color: #f6f8fa;
+            border-left: 4px solid #0366d6;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .get { background-color: #61affe; color: white; }
+        .post { background-color: #49cc90; color: white; }
+        .put { background-color: #fca130; color: white; }
+        .delete { background-color: #f93e3e; color: white; }
+        .path {
+            font-family: monospace;
+            font-size: 1.1em;
+        }
+        .schema {
+            margin-top: 10px;
+        }
+        .toc {
+            background-color: #f6f8fa;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>ABTS Unified Generator API Documentation</h1>
+    <p>This documentation provides details about the REST API endpoints available in the ABTS Unified Generator system.</p>
+    
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+            <li>
+                <a href="#endpoints">API Endpoints</a>
+                <ul>
+                    <li><a href="#questions">Questions</a></li>
+                    <li><a href="#agents">Agents</a></li>
+                    <li><a href="#pipelines">Pipelines</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#outlines">Outlines</a></li>
+                </ul>
+            </li>
+            <li><a href="#models">Data Models</a></li>
+            <li><a href="#errors">Error Handling</a></li>
+        </ul>
+    </div>
+    
+    <h2 id="introduction">Introduction</h2>
+    <p>The ABTS Unified Generator API allows you to generate educational questions from outlines using AI agents. 
+       The API follows RESTful principles and returns responses in JSON format.</p>
+    
+    <p>For interactive documentation, you can use:</p>
+    <ul>
+        <li><a href="/api/docs">Swagger UI</a> - Interactive API documentation</li>
+        <li><a href="/api/redoc">ReDoc</a> - Alternative documentation viewer</li>
+    </ul>
+    
+    <h2 id="authentication">Authentication</h2>
+    <p>Authentication details will be added in future versions of the API.</p>
+    
+    <h2 id="endpoints">API Endpoints</h2>
+    
+    <h3 id="questions">Questions</h3>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/questions</span>
+        <p>Get a list of questions with filtering options</p>
+        <h4>Query Parameters</h4>
+        <ul>
+            <li><code>domain</code> - Filter by knowledge domain</li>
+            <li><code>complexity</code> - Filter by question complexity (e.g., easy, medium, hard)</li>
+            <li><code>question_type</code> - Filter by question type (e.g., multiple-choice, short-answer)</li>
+            <li><code>outline_id</code> - Filter by the outline ID that generated the questions</li>
+            <li><code>keywords</code> - Filter by keywords in question content</li>
+            <li><code>skip</code> - Number of records to skip (default: 0)</li>
+            <li><code>limit</code> - Maximum number of records to return (default: 100)</li>
+        </ul>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/questions/{question_id}</span>
+        <p>Get a specific question by ID</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <span class="path">/api/questions</span>
+        <p>Create a new question</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <span class="path">/api/questions/generate</span>
+        <p>Generate questions based on input data using the agent pipeline</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <span class="path">/api/questions/{question_id}</span>
+        <p>Delete a question</p>
+    </div>
+    
+    <h3 id="agents">Agents</h3>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/agents/types</span>
+        <p>Get list of available agent types</p>
+    </div>
+    
+    <h3 id="pipelines">Pipelines</h3>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/pipeline/agent-types</span>
+        <p>Get list of available agent types for pipelines</p>
+    </div>
+    
+    <h3 id="templates">Templates</h3>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/templates</span>
+        <p>List all available templates</p>
+    </div>
+    
+    <h3 id="outlines">Outlines</h3>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="path">/api/outlines</span>
+        <p>List all available outlines</p>
+    </div>
+    
+    <h2 id="models">Data Models</h2>
+    <p>For detailed data models, please refer to the <a href="/api/docs">Swagger UI</a> documentation.</p>
+    
+    <h2 id="errors">Error Handling</h2>
+    <p>The API uses standard HTTP status codes to indicate the success or failure of requests:</p>
+    <ul>
+        <li><code>200 OK</code> - The request was successful</li>
+        <li><code>201 Created</code> - A new resource was successfully created</li>
+        <li><code>204 No Content</code> - The request was successful but no content is returned</li>
+        <li><code>400 Bad Request</code> - The request was invalid or cannot be served</li>
+        <li><code>401 Unauthorized</code> - Authentication is required and has failed or not been provided</li>
+        <li><code>403 Forbidden</code> - The request is understood but access is denied</li>
+        <li><code>404 Not Found</code> - The requested resource does not exist</li>
+        <li><code>422 Unprocessable Entity</code> - The request was well-formed but was unable to be followed due to semantic errors</li>
+        <li><code>500 Internal Server Error</code> - An error occurred on the server</li>
+    </ul>
+    
+    <p>Error responses include a detail message explaining the error:</p>
+    <pre><code>{
+  "detail": "Question with ID 123 not found"
+}</code></pre>
+    
+    <hr>
+    <footer>
+        <p>© 2023 ABTS Team. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

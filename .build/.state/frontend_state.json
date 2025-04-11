@@ -1,0 +1,311 @@
+{
+  "plan_name": "ABTS Unified Generator Frontend Implementation",
+  "task_id": "abts-unified-generator-frontend-implementation",
+  "status": "pending",
+  "last_updated": "2023-12-15T15:00:00Z",
+  "started_at": null,
+  "notes": "Frontend implementation for the ABTS Unified Generator to create a modern, user-friendly interface for generating questions, comparing outputs, and providing feedback.",
+  "phases": [
+    {
+      "name": "Project Setup & Core UI Components",
+      "status": "pending",
+      "weeks": "1-2",
+      "started_at": null,
+      "tasks": [
+        {
+          "id": "1.1",
+          "description": "Frontend Framework Setup",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Initialize Next.js project with TypeScript", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Set up shadcn/ui component library", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Configure tailwind.css with ABTS-inspired color palette", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create project structure following best practices", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Set up API client utilities for backend communication", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "1.2",
+          "description": "Authentication & Layout",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Implement authentication if required", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create responsive layout with navigation", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design modernized ABTS-inspired theme", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement dark/light mode", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create loading states and error handling components", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "1.3",
+          "description": "Design System Implementation",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create design tokens based on ABTS colors with modern approach", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement typography system", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build reusable component library", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create animations and transitions", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement responsive design patterns", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "1.4",
+          "description": "API Integration Setup",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create typed API client for all backend endpoints", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement request interceptors for authentication", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Set up error handling and retry logic", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create mock API for development", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement long-running request handling patterns", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Question Generation & Comparison",
+      "status": "pending",
+      "weeks": "3-4",
+      "started_at": null,
+      "tasks": [
+        {
+          "id": "2.1",
+          "description": "Question Generation Interface",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create form for submitting to `/api/questions/generate` endpoint", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement outline selection component", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build question complexity and type selectors", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create keyword/domain filters", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement loading states for lengthy generation processes", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "2.2",
+          "description": "GPT-4o Direct Query Interface",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Build interface for direct GPT-4o queries", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement system prompt templates", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create parameter adjustment UI", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Set up configuration options for model parameters", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build question preview component", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "2.3",
+          "description": "Comparison View",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Design side-by-side comparison UI", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement A/B testing interface", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create interactive comparison cards", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build voting mechanism for preferred output", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement reasons/comments collection", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "2.4",
+          "description": "Results Display & Management",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create question results display", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build pagination and filtering", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement sorting and search functionality", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design question detail view", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build export functionality", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Feedback System & Additional Features",
+      "status": "pending",
+      "weeks": "5-6",
+      "started_at": null,
+      "tasks": [
+        {
+          "id": "3.1",
+          "description": "Feedback Collection System",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create feedback form UI for comparisons", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement rating system (1-5 stars)", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build comment/rationale collection", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design feedback history view", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement feedback submission to `/api/feedback/` endpoint", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "3.2",
+          "description": "Outline Management Interface",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create outline browser and viewer", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement outline upload interface", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build outline validation workflow", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design outline editing capabilities", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create visualization for outline structure", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "3.3",
+          "description": "Template System Interface",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Build template browser and manager", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement template creation interface", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create template variable editing", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design template rendering preview", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build template validation workflow", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "3.4",
+          "description": "Dashboard & Analytics",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Create stats dashboard using question and comparison data", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement visualization components", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build feedback analysis view", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create user activity tracking", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design summary reports", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Long-Running Processes & Optimizations",
+      "status": "pending",
+      "weeks": "7-8",
+      "started_at": null,
+      "tasks": [
+        {
+          "id": "4.1",
+          "description": "Long-Running Process Handling",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Implement optimistic UI updates", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create background process manager", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Build progress indicators and status displays", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement cancellation mechanisms", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design reconnection logic", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "4.2",
+          "description": "Performance Optimizations",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Implement code splitting and lazy loading", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Set up client-side caching strategies", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create service worker for offline capabilities", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Optimize asset loading", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement virtualization for large data sets", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "4.3",
+          "description": "Testing & Documentation",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Write unit and integration tests", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create end-to-end test suite", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Generate component documentation", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Write user guides and tutorials", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create API documentation", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        },
+        {
+          "id": "4.4",
+          "description": "Deployment & CI/CD",
+          "status": "pending",
+          "started_at": null,
+          "completed_at": null,
+          "subtasks": [
+            {"description": "Set up continuous integration", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Configure deployment pipelines", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Create environment-specific configurations", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Implement monitoring and error tracking", "status": "pending", "started_at": null, "completed_at": null},
+            {"description": "Design automatic testing workflow", "status": "pending", "started_at": null, "completed_at": null}
+          ]
+        }
+      ]
+    }
+  ],
+  "current_focus": {
+    "phase": null,
+    "task": null,
+    "subtask": null,
+    "status": "pending",
+    "started_at": null,
+    "completed_at": null
+  },
+  "additional_features": [
+    {
+      "name": "Core UI Components",
+      "description": "Implementation of essential UI components including LoadingSpinner, ProgressBar, ErrorDisplay, etc.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "Main Pages",
+      "description": "Implementation of main application pages including Dashboard, Question Generator, Comparison Tool, etc.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "Long-Running Request Strategies",
+      "description": "Implementation of strategies for handling long-running requests including polling mechanism, background processing, and visual feedback",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "Technology Stack Integration",
+      "description": "Integration of frontend technology stack including Next.js, shadcn/ui, Tailwind CSS, React Query, etc.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "name": "ABTS Theme Implementation",
+      "description": "Implementation of modernized ABTS theme with color palette for light and dark modes",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null
+    }
+  ]
+} 
