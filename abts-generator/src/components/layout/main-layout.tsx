@@ -1,69 +1,70 @@
-// File: src/components/layout/main-layout.tsx
 "use client";
 
 import { Navbar } from "@/components/layout/navbar";
-import { useState, useEffect } from "react";
+import { Heart } from "lucide-react";
+import { useRef, useEffect } from "react";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
-  // Add basic theme detection
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const rippleRef = useRef<HTMLDivElement>(null);
+  
+  // Mouse ripple effect
+  const addRipple = (e: MouseEvent) => {
+    if (!rippleRef.current) return;
+    
+    const ripple = document.createElement('div');
+    const rect = rippleRef.current.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${e.clientX - rect.left - (size/2)}px`;
+    ripple.style.top = `${e.clientY - rect.top - (size/2)}px`;
+    
+    ripple.classList.add('ripple');
+    rippleRef.current.appendChild(ripple);
+    
+    setTimeout(() => {
+      if (ripple && ripple.parentNode) {
+        ripple.parentNode.removeChild(ripple);
+      }
+    }, 1500);
+  };
   
   useEffect(() => {
-    // Check for system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
-    
-    // Listen for changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      setTheme(e.matches ? "dark" : "light");
-      if (e.matches) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
+    // Add mouse move listener for ripple effect
+    const handleMouseMove = (e: MouseEvent) => {
+      // Throttle the ripple effect to avoid performance issues
+      if (Math.random() > 0.97) { // Only create ripple ~3% of the time
+        addRipple(e);
       }
     };
     
-    try {
-      // Modern API (newer browsers)
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    } catch (e) {
-      // Fallback for older browsers
-      mediaQuery.addListener(handleChange);
-      return () => mediaQuery.removeListener(handleChange);
-    }
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
-
-  // Function to toggle theme
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-    }
-  };
   
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="flex flex-col min-h-screen medical-bg">
+      {/* Ripple background container */}
+      <div ref={rippleRef} className="ripple-background"></div>
+      
+      <Navbar />
       <main className="flex-1 container mx-auto px-4 py-6">
         {children}
       </main>
-      <footer className="border-t py-4 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-border/40 py-4 text-center text-sm text-muted-foreground backdrop-blur-sm bg-background/60">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row items-center justify-between">
-            <div>
-              ABTS Unified Generator &copy; {new Date().getFullYear()}
+            <div className="flex items-center mb-2 sm:mb-0">
+              <Heart className="h-4 w-4 text-primary mr-2" />
+              <span>ABTS Unified Generator &copy; {new Date().getFullYear()}</span>
             </div>
-            <div className="flex gap-4 mt-2 sm:mt-0">
-              <a href="#" className="hover:underline">Help</a>
-              <a href="#" className="hover:underline">Documentation</a>
-              <a href="#" className="hover:underline">About</a>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-primary transition-colors duration-200">Help</a>
+              <a href="#" className="hover:text-primary transition-colors duration-200">Documentation</a>
+              <a href="#" className="hover:text-primary transition-colors duration-200">About</a>
             </div>
           </div>
         </div>

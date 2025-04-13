@@ -3,6 +3,30 @@
 @tailwind utilities;
 
 :root {
+  --background: #0e1521;
+  --foreground: #e8ecf1;
+  --card: #121d2e;
+  --card-foreground: #e8ecf1;
+  --popover: #121d2e;
+  --popover-foreground: #e8ecf1;
+  --primary: #1A5F7A;
+  --primary-rgb: 26, 95, 122;
+  --primary-foreground: #f8fafc;
+  --secondary: #3A7CA5;
+  --secondary-foreground: #f8fafc;
+  --accent: #D9A566;
+  --accent-foreground: #f8fafc;
+  --muted: #172032;
+  --muted-foreground: #94a3b8;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f8fafc;
+  --border: #1c2a3f;
+  --input: #1c2a3f;
+  --ring: #cbd5e1;
+  --radius: 0.5rem;
+}
+
+.light {
   --background: #ffffff;
   --foreground: #171717;
   --card: #ffffff;
@@ -10,6 +34,7 @@
   --popover: #ffffff;
   --popover-foreground: #171717;
   --primary: #1A5F7A;
+  --primary-rgb: 26, 95, 122;
   --primary-foreground: #f8fafc;
   --secondary: #3A7CA5;
   --secondary-foreground: #f8fafc;
@@ -22,29 +47,6 @@
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #1e293b;
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: #1e293b;
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --popover: #1e293b;
-  --popover-foreground: #f8fafc;
-  --primary: #1A5F7A;
-  --primary-foreground: #f8fafc;
-  --secondary: #3A7CA5;
-  --secondary-foreground: #f8fafc;
-  --accent: #D9A566;
-  --accent-foreground: #f8fafc;
-  --muted: #334155;
-  --muted-foreground: #94a3b8;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #f8fafc;
-  --border: #334155;
-  --input: #334155;
-  --ring: #cbd5e1;
 }
 
 * {
@@ -55,4 +57,196 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Ripple effect */
+.ripple-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ripple {
+  position: absolute;
+  background: radial-gradient(circle, rgba(26, 95, 122, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  animation: ripple-effect 1.5s ease-out;
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Heartbeat pulse animation */
+.heartbeat-pulse {
+  position: relative;
+}
+
+.heartbeat-pulse::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(26, 95, 122, 0.7);
+  animation: heartbeat 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes heartbeat {
+  0% {
+    box-shadow: 0 0 0 0 rgba(26, 95, 122, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(26, 95, 122, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(26, 95, 122, 0);
+  }
+}
+
+/* Blob animations */
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Shine effect */
+@keyframes surgical-shine {
+  0% {
+    background-position: -200px;
+  }
+  100% {
+    background-position: 200px;
+  }
+}
+
+/* ABTS specific elements */
+.abts-logo {
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.abts-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.abts-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.abts-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.abts-button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.abts-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: rotate(45deg);
+  animation: surgical-shine 4s infinite linear;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.abts-button:hover {
+  background-color: var(--secondary);
+}
+
+.abts-button:hover::after {
+  opacity: 1;
+}
+
+/* Navigation items */
+.nav-item {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 100%;
+}
+
+/* Background with subtle grid pattern */
+.medical-bg {
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(58, 124, 165, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 124, 165, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
 }

@@ -5,18 +5,23 @@
   },
   "linter": {
     "enabled": true,
+    "rules": {
+      "recommended": true
+    },
     "ignore": [
-      "../backend/**/*.py",
-      "../backend/**/*.pyc",
-      "../backend/**/__pycache__"
+      "node_modules",
+      ".next",
+      "public"
     ]
   },
   "formatter": {
     "enabled": true,
+    "indentWidth": 2,
+    "indentStyle": "space",
     "ignore": [
-      "../backend/**/*.py",
-      "../backend/**/*.pyc",
-      "../backend/**/__pycache__"
+      "node_modules",
+      ".next",
+      "public"
     ]
   },
   "javascript": {
@@ -26,4 +31,4 @@
       "semicolons": "always"
     }
   }
-} 
+}
